@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\LenderController;
+use App\Http\Controllers\LoanController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Middleware\Authenticate;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes([
+    'register' => false
+]);
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('lender', LenderController::class)->middleware([Authenticate::class]);
+Route::resource('loan', LoanController::class)->middleware([Authenticate::class]);
+Route::resource('payment', PaymentController::class)->middleware([Authenticate::class]);
