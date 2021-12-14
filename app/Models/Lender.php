@@ -34,11 +34,9 @@ class Lender extends Model
      *
      * @return string
      */
-    public function getOutstandingLoansAttribute(): string
+    public function getOutstandingLoansAttribute(): float
     {
-        $loanAmount = $this->loans->sum('amount');
-        $paymentAmount = $this->payments->sum('amount');
-        return number_format($loanAmount - $paymentAmount, 2);
+        return $this->loans->sum('amount') - $this->payments->sum('amount');
     }
 
     /**

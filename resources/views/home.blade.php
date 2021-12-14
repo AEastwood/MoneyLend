@@ -96,8 +96,8 @@
                                     <td>£{{ number_format($lender->outstandingLoans, 2) }}</td>
                                     <td class="d-grid">
                                         <a href="{{ route('lender.edit', $lender->id) }}"
-                                           class="btn btn-sm btn-info">
-                                            Edit
+                                           class="btn btn-sm btn-primary">
+                                            View
                                         </a>
                                     </td>
                                 </tr>
