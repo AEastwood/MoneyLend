@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Lender\LenderStoreRequest;
 use App\Models\Lender;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Validator;
 use Illuminate\View\View;
 
 class LenderController extends Controller
@@ -42,16 +41,11 @@ class LenderController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param LenderStoreRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(LenderStoreRequest $request): RedirectResponse
     {
-        $request->validate([
-            'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
-        ]);
-
         Lender::create($request->all());
 
         return redirect()->route('home')->with('success', 'Lender added');
@@ -59,14 +53,12 @@ class LenderController extends Controller
 
     /**
      * update lender
+     * @param LenderStoreRequest $request
+     * @param Lender $lender
+     * @return RedirectResponse
      */
-    public function update(Request $request, Lender $lender): RedirectResponse
+    public function update(LenderStoreRequest $request, Lender $lender): RedirectResponse
     {
-        $request->validate([
-            'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
-        ]);
-
         $lender->update($request->all());
 
         return back()->with('success', 'Lender saved');

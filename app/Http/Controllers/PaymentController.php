@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Payment\PaymentStoreRequest;
 use App\Models\Lender;
 use App\Models\Payments\Payment;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PaymentController extends Controller
@@ -33,16 +33,11 @@ class PaymentController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param PaymentStoreRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(PaymentStoreRequest $request): RedirectResponse
     {
-        $request->validate([
-            'amount' => 'required|numeric|between:0.00,99999.99',
-            'lender_id' => 'required|numeric'
-        ]);
-
         Payment::create($request->all());
 
         return redirect()->route('lender.edit', $request->lender_id)->with('success', 'Payment added');

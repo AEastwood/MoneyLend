@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Loan\LoanStoreRequest;
 use App\Models\Lender;
 use App\Models\Payments\Loan;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class LoanController extends Controller
@@ -32,16 +32,11 @@ class LoanController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param LoanStoreRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(LoanStoreRequest $request): RedirectResponse
     {
-        $request->validate([
-            'amount' => 'required|numeric|between:0.00,99999.99',
-            'lender_id' => 'required|numeric'
-        ]);
-
         Loan::create($request->all());
 
         return redirect()->route('lender.edit', $request->lender_id)->with('success', 'Loan added');

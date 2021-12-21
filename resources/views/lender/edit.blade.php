@@ -91,9 +91,6 @@
         </div>
         <div class="row mb-2">
             <div class="col-9 text-end">
-                <a type="submit" class="btn btn-danger btn-sm mt-1" href="{{ route('home') }}">
-                    Cancel
-                </a>
                 <button type="submit" class="btn btn-success btn-sm mt-1" form="updateLenderForm">
                     Save Lender
                 </button>
@@ -104,7 +101,7 @@
 
         <div class="row">
             <div class="col-md-3">
-                <h3>Loans</h3>
+                <h3>Loans: £{{ number_format($lender->loans->sum('amount'), 2) }}</h3>
             </div>
             <div class="col-md-3 text-end">
                 <a class="btn btn-danger btn-sm" href="{{ route('loan.create', ['lender_id' => $lender->id]) }}">
@@ -112,7 +109,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <h3>Payments</h3>
+                <h3>Payments: £{{ number_format($lender->payments->sum('amount'), 2) }}</h3>
             </div>
             <div class="col-md-3 text-end">
                 <a class="btn btn-success btn-sm" href="{{ route('payment.create', ['lender_id' => $lender->id]) }}">
