@@ -45,10 +45,6 @@
                                 <a class="btn btn-success btn-sm" href="{{ route('lender.create') }}" type="submit">
                                     Add Lender
                                 </a>
-                                <a type="button" class="btn btn-sm btn-warning"
-                                   href="{{ route('home') }}">
-                                    Refresh
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -56,31 +52,15 @@
             </div>
         </div>
 
-        <div class="row mt-4 mb-2">
-            <div class="col-6 col-md-3">
-                Lenders
-                ({{ $lenders->count() }})
-            </div>
-            <div class="col-9 col-md-6">
-
-            </div>
-            <div class="col-12 col-md-3">
-                Outstanding Amount
-            </div>
-        </div>
-
-        <div class="row mb-2">
+        <div class="row mt-4 mb-2 my-3 my-md-0">
             <div class="col-12 col-md-9">
+                <h4>Lenders ({{ $lenders->count() }})</h4>
                 <div class="card">
                     <div class="card-body">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover table-responsive">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Last Name</th>
-                                <th scope="col">Loans Taken</th>
-                                <th scope="col">Payments Made</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">Outstanding</th>
                                 <th scope="col">View</th>
                             </tr>
@@ -88,11 +68,7 @@
                             <tbody>
                             @foreach($lenders as $lender)
                                 <tr>
-                                    <th scope="row">{{ $lender->id }}</th>
-                                    <td>{{ $lender->first_name }}</td>
-                                    <td>{{ $lender->last_name }}</td>
-                                    <td>{{ $lender->loans->count() }}</td>
-                                    <td>{{ $lender->payments->count() }}</td>
+                                    <td>{{ $lender->fullname }}</td>
                                     <td>£{{ number_format($lender->outstandingLoans, 2) }}</td>
                                     <td class="d-grid">
                                         <a href="{{ route('lender.edit', $lender->id) }}"
@@ -107,16 +83,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-3">
+
+            <div class="col-12 col-md-3 my-3 my-md-0">
+                <h4>Outstanding Amount</h4>
                 <div class="card">
                     <div class="card-body text-center py-4">
-                        <h1>£{{ number_format($moniesOwed, 2) }}</h1>
+                        <span class="outstanding-amount">£{{ number_format($moniesOwed, 2) }}</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row mt-3">
+        <div class="row mt-3 mt-md-2">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">

@@ -90,7 +90,7 @@
                     Cancel
                 </a>
                 <button type="submit" class="btn btn-success btn-sm mt-1" form="addLoanForm">
-                    Save Payment
+                    Save Loan
                 </button>
             </div>
         </div>

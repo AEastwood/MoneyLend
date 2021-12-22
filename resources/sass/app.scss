@@ -6,3 +6,13 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@media(max-width: 768px) {
+    button.full-width {
+        width: 100%;
+    }
+}
+
+.outstanding-amount {
+    font-size: 1.6rem;
+}
