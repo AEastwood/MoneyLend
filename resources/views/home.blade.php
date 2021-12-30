@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="row mt-4 mb-2 my-3 my-md-0">
+        <div class="row mt-4 mb-2 my-3">
             <div class="col-12 col-md-9">
                 <h4>Lenders ({{ $lenders->count() }})</h4>
                 <div class="card">
