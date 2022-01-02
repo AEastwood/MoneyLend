@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $lenders = Lender::all();
+        $lenders = Lender::all()->sortByDesc('outstandingLoans');
 
         return view('home', [
             'lenders' => $lenders,
